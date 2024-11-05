@@ -6,7 +6,7 @@ Date           : 2024-11-04
 
 Description    : This script processes TDS (Tabular Data Stream) login packets,
                  decrypts sensitive information, and outputs details such as
-                 client name, server name, username, password, and database name.
+                 client name, server name, username, password, and database name
 """
 
 import socket
