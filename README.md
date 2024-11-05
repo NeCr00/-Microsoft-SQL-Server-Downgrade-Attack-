@@ -1,4 +1,4 @@
-# MSSQL TDS Downgrade Attack 
+# MSSQL -  TDS Downgrade Attack 
 
 This repository contains code and scripts for performing a downgrade attack on Microsoft SQL Server's native authentication. The attack exploits the default configuration of MSSQL, where login credentials are submitted encrypted via TLS/SSL. By manipulating the network traffic, an attacker can trick the client/server into believing that encryption is not supported, resulting in the submission of credentials in plaintext.
 
