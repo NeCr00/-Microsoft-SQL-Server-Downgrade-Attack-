@@ -59,7 +59,7 @@ This command will start intercepting packets between the client at `192.168.1.10
 4. **Automatic Cleanup**: If the script is stopped, it will automatically stop ARP spoofing and clear iptables rules.
 
 
-## Important Keywords
+## Keywords
 
 - **TDS packet interception**
 - **Decrypt TDS packets**
