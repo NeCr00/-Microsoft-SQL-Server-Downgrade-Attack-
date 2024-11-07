@@ -1,46 +1,71 @@
-# MSSQL -  TDS Downgrade Attack 
 
-This repository contains code and scripts for performing a downgrade attack on Microsoft SQL Server's native authentication. The attack exploits the default configuration of MSSQL, where login credentials are submitted encrypted via TLS/SSL. By manipulating the network traffic, an attacker can trick the client/server into believing that encryption is not supported, resulting in the submission of credentials in plaintext.
+# MSSQL - TDS Downgrade Attack
 
-A walkthrough of the attack and more details can be found here: <link>
+## Overview
 
-## Instructions
-
-1. **Create the module directory and start Metasploit to load the module**
-
-   ```bash
-    #Create the directory and copy the exploit
-    mkdir ./modules/exploits
-    cp MSSQL_Downgrade_Attack.rb ./modules/exploits
-    
-    #Start msfconsole with root privileges and load the module path
-    sudo msfconsole
-    loadpath <full_path>/modules/exploits
-    
-    #Reload all the modules to include the new imported module
-    reload_all
-    
-    #Search and find the exploit
-    search MSSQL_Downgrade_Attack
-    ```
-
-3. **Set the necessary parameters for the module, such as target IP addresses, ports, and any other required fields. To view the available options, type**
-
-    ```bash
-    msf6 > show options
-    
-    #Then, fill in each required parameter:
-    msf6 > set <parameter_name> <value>
-    ```
-    
-5. **After configuring the parameters, execute the module**
-
-     
-6. **Once the module is running, initiate a connection attempt from the client side. This will trigger a login attempt in order to capture the MSSQL account credentials.**
- 
+This tool is designed to intercept and manipulate Tabular Data Stream (TDS) packets between a client and an MSSQL server. By initiating a Man-in-the-Middle (MitM) attack through ARP spoofing, it intercepts and downgrades the encryption of TDS login packet, allowing for the decryption of  MSSQL account username and password.
 
 
-## Disclaimer
+## Requirements
 
-This repository and its contents are provided for educational and research purposes only. The code and scripts should be used responsibly and with proper authorization. The author and repository contributors are not responsible for any misuse or damages caused by the utilization of the provided materials.
+- **Operating System**: Linux (with `iptables` and `arpspoof` support)
+- **Python**: 3.x
+- **Dependencies**:
+  - `arpspoof`: Required for ARP spoofing.
+  - `iptables`: Required for traffic redirection.
 
+> **Note**: This tool requires `root` privileges to run due to the need for network interception and packet modification.
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/tds-packet-interception.git
+cd tds-packet-interception
+```
+
+Install any additional dependencies, if needed.
+
+## Usage
+
+To run the script, use the following command:
+
+```bash
+sudo python3 tds_interceptor.py -s <server_ip> -c <client_ip> -p <port>
+```
+
+### Command-line Arguments
+
+- `-s`, `--server`: **Required**. Target MSSQL server IP address.
+- `-c`, `--client`: **Required**. Client IP address for interception.
+- `-p`, `--port`: Optional. Target MSSQL server port (default: 1433).
+
+### Example
+
+```bash
+sudo python3 tds_interceptor.py -s 192.168.1.100 -c 192.168.1.101
+```
+
+This command will start intercepting packets between the client at `192.168.1.101` and the MSSQL server at `192.168.1.100` on port `1433`.
+
+## How It Works
+
+1. **ARP Spoofing**: The script initiates ARP spoofing to trick the client and server into routing their traffic through the attacker's machine.
+2. **Traffic Redirection**: With `iptables`, traffic destined for the MSSQL server is redirected to the specified port for interception.
+3. **TDS Packet Interception and Modification**: 
+   - The script captures TDS login packets and attempts to downgrade the encryption.
+   - If successful, it retrieves and decrypts sensitive information, including usernames and passwords.
+4. **Automatic Cleanup**: If the script is stopped, it will automatically stop ARP spoofing and clear iptables rules.
+
+
+## Important Keywords
+
+- **TDS packet interception**
+- **Decrypt TDS packets**
+- **ARP spoofing MSSQL**
+- **MSSQL packet manipulation**
+- **Downgrade MSSQL encryption**
+- **Man-in-the-Middle MSSQL**
+- **Decrypt usernames and passwords in MSSQL**
+- **Network security penetration testing**
