@@ -21,8 +21,8 @@ This tool is designed to intercept and manipulate Tabular Data Stream (TDS) pack
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/tds-packet-interception.git
-cd tds-packet-interception
+https://github.com/NeCr00/Microsoft-SQL-TDS-Downgrade-Attack.git
+cd Microsoft-SQL-TDS-Downgrade-Attack
 ```
 
 Install any additional dependencies, if needed.
