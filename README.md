@@ -8,7 +8,7 @@ This tool is designed to intercept and manipulate Tabular Data Stream (TDS) pack
 
 ## Requirements
 
-- **Operating System**: Linux (with `iptables` and `arpspoof` support)
+- **Operating System**:
 - **Python**: 3.x
 - **Dependencies**:
   - `arpspoof`: Required for ARP spoofing.
