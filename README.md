@@ -32,7 +32,7 @@ Install any additional dependencies, if needed.
 To run the script, use the following command:
 
 ```bash
-sudo python3 tds_interceptor.py -s <server_ip> -c <client_ip> -p <port>
+sudo python3 TDS_Downgrade.py -s <server_ip> -c <client_ip> -p <port>
 ```
 
 ### Command-line Arguments
@@ -44,7 +44,7 @@ sudo python3 tds_interceptor.py -s <server_ip> -c <client_ip> -p <port>
 ### Example
 
 ```bash
-sudo python3 tds_interceptor.py -s 192.168.1.100 -c 192.168.1.101
+sudo python3 TDS_Downgrade.py -s 192.168.1.100 -c 192.168.1.101
 ```
 
 This command will start intercepting packets between the client at `192.168.1.101` and the MSSQL server at `192.168.1.100` on port `1433`.
