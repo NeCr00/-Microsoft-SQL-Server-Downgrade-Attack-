@@ -5,6 +5,9 @@
 
 This tool is designed to intercept and manipulate Tabular Data Stream (TDS) packets between a client and an MSSQL server. By initiating a Man-in-the-Middle (MitM) attack through ARP spoofing, it intercepts and downgrades the encryption of TDS login packet, allowing for the decryption of  MSSQL account username and password.
 
+## Walkthrough & Details
+
+https://medium.com/@giannisxristodoulakos/microsoft-sql-server-tds-downgrade-attack-4873098629b8
 
 ## Requirements
 
