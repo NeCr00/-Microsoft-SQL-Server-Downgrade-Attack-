@@ -7,7 +7,7 @@ This tool is designed to intercept and manipulate Tabular Data Stream (TDS) pack
 
 ## Walkthrough & Details
 
-https://medium.com/@giannisxristodoulakos/microsoft-sql-server-tds-downgrade-attack-4873098629b8
+MSSQL - TDS Downgrade Attack - https://medium.com/@giannisxristodoulakos/microsoft-sql-server-tds-downgrade-attack-4873098629b8
 
 ## Requirements
 
