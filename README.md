@@ -10,18 +10,15 @@ This tool is designed to intercept and manipulate Tabular Data Stream (TDS) pack
 MSSQL - TDS Downgrade Attack - https://medium.com/@giannisxristodoulakos/microsoft-sql-server-tds-downgrade-attack-4873098629b8
 
 ## Requirements
-
-- **Operating System**:
+- **Internal Host**: An host on the internal network with root privileges, in order to execute the MitM attack (Linux OS)
 - **Python**: 3.x
 - **Dependencies**:
   - `arpspoof`: Required for ARP spoofing.
   - `iptables`: Required for traffic redirection.
 
-> **Note**: This tool requires `root` privileges to run due to the need for network interception and packet modification.
-
 ## Installation
 
-Clone the repository:
+Clone the repository on the internal host:
 
 ```bash
 https://github.com/NeCr00/Microsoft-SQL-TDS-Downgrade-Attack.git
@@ -29,6 +26,10 @@ cd Microsoft-SQL-TDS-Downgrade-Attack
 ```
 
 Install any additional dependencies, if needed.
+```bash
+sudo apt install iptables
+sudo apt install arpspoof
+```
 
 ## Usage
 
@@ -46,11 +47,15 @@ sudo python3 TDS_Downgrade.py -s <server_ip> -c <client_ip> -p <port>
 
 ### Example
 
+1. This command will start intercepting packets between the client at `192.168.1.101` and the MSSQL server at `192.168.1.100` on port `1433`.
 ```bash
 sudo python3 TDS_Downgrade.py -s 192.168.1.100 -c 192.168.1.101
 ```
 
-This command will start intercepting packets between the client at `192.168.1.101` and the MSSQL server at `192.168.1.100` on port `1433`.
+2.
+Now by triggering an action (eg. Login attempt ) on client side , the application will try to connect to legitimate MSSQL server. However, due to Mitm attack,
+the attacking host will receive the request , proceed with the appropiate modifications and then will forwrard the traffic on the MSSQL server. Eventually, it will
+downgrade the connection and capture the login credentials on the Login packet.
 
 ## How It Works
 
