@@ -51,6 +51,7 @@ sudo python3 TDS_Downgrade.py -s <server_ip> -c <client_ip> -p <port>
 ```bash
 sudo python3 TDS_Downgrade.py -s 192.168.1.100 -c 192.168.1.101
 ```
+![Alt Text](images/listen.png)
 
 2.
 Now by triggering an action (eg. Login attempt ) on client side , the application will try to connect to legitimate MSSQL server. However, due to Mitm attack,
