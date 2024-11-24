@@ -53,10 +53,14 @@ sudo python3 TDS_Downgrade.py -s 192.168.1.100 -c 192.168.1.101
 ```
 ![Alt Text](images/listen.png)
 
-2.
-Now by triggering an action (eg. Login attempt ) on client side , the application will try to connect to legitimate MSSQL server. However, due to Mitm attack,
-the attacking host will receive the request , proceed with the appropiate modifications and then will forwrard the traffic on the MSSQL server. Eventually, it will
+2. Now by triggering an action (eg. Login attempt ) on client side , the application will try to connect to legitimate MSSQL server.
+
+![Alt Text](images/thick_client.png)
+  
+3. However, due to Mitm attack,the attacking host will receive the request , proceed with the appropiate modifications and then will forwrard the traffic on the MSSQL server. Eventually, it will
 downgrade the connection and capture the login credentials on the Login packet.
+
+![Alt Text](images/capture_creds.png)
 
 ## How It Works
 
